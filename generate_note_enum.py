@@ -1,8 +1,8 @@
 twelve_notes = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"]
 
 f = open("note.py", "a")
-f.write("from enum import Enum\n\n")
-f.write("class Note(Enum):\n")
+f.write("from enum import IntEnum\n\n")
+f.write("class Note(IntEnum):\n")
 octave = 0
 for midi_note_index in range(21,129):
     note = twelve_notes[midi_note_index%12]
