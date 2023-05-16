@@ -1,6 +1,7 @@
-from pitch import Pitch
-from velocity import Velocity
+from Modelos.pitch import Pitch
+from Modelos.velocity import Velocity
 from fractions import Fraction
+
 
 class Note:
     def __init__(self, ptch, velocity, Duration) -> None:

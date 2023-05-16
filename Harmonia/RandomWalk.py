@@ -1,12 +1,12 @@
 import numpy as np
 graph = [
-[0, 0.34, 0.33, 0.33, 0, 0, 0],
-[0, 0, 0, 0, 0.7, 0, 0.3], 
-[0, 0, 0, 0.3, 0, 0.7, 0], 
-[0, 0, 0, 0, 0.7, 0.3, 0], 
-[0.5, 0.1, 0.15, 0.1, 0, 0, 0.15], 
-[0, 0.5, 0.5, 0, 0, 0, 0], 
-[0.5, 0, 0.5, 0, 0, 0, 0], 
+    [0, 0.34, 0.33, 0.33, 0, 0, 0],
+    [0, 0, 0, 0, 0.7, 0, 0.3],
+    [0, 0, 0, 0.3, 0, 0.7, 0],
+    [0, 0, 0, 0, 0.7, 0.3, 0],
+    [0.5, 0.1, 0.15, 0.1, 0, 0, 0.15],
+    [0, 0.5, 0.5, 0, 0, 0, 0],
+    [0.5, 0, 0.5, 0, 0, 0, 0],
 ]
 
 names = {
@@ -24,7 +24,7 @@ chordIndexes.append(0)
 
 for i in range(n):
     nodeProbabilities = graph[chordIndexes[len(chordIndexes)-1]]
-    ansArray = np.random.choice([0,1,2,3,4,5,6], 1, p=nodeProbabilities)
+    ansArray = np.random.choice([0, 1, 2, 3, 4, 5, 6], 1, p=nodeProbabilities)
     chordIndexes.append(ansArray.tolist()[0])
 
 chordNames = []
