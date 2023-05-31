@@ -122,39 +122,35 @@ class Pitch(IntEnum):
     Gb9 = 126
     G9 = 127
     Ab9 = 128
-    
-	@staticmethod
-	def method():
-	    return 1
-
-	def __add__(self, value):
-		members = list(self.__class__)
-		index = members.index(self)
-		new_index = (index + value) % len(members)
-		return members[new_index]
 
 
-	def __sub__(self, value):
-		members = list(self.__class__)
-		index = members.index(self)
-		new_index = (index - value) % len(members)
-		return members[new_index]
+# 	def __add__(self, value):
+# 		members = list(self.__class__)
+# 		index = members.index(self)
+# 		new_index = (index + value) % len(members)
+# 		return members[new_index]
 
 
-	@staticmethod
-	def todos(values):
-		members = list(self.__class__)
-		todos = []
-		for value in values:
-			if(value <1 or value> 12):
-				raise Exception("Por favor dê apenas valores entre 1 e 12")
-			i = value+20
-			while (i < 128):
-				todos.append(i)
-				i += 12
-		return todos
+# 	def __sub__(self, value):
+# 		members = list(self.__class__)
+# 		index = members.index(self)
+# 		new_index = (index - value) % len(members)
+# 		return members[new_index]
 
 
+# 	@staticmethod
+# 	def todos(values):
+# 		members = list(self.__class__)
+# 		todos = []
+# 		for value in values:
+# 			if(value <1 or value> 12):
+# 				raise Exception("Por favor dê apenas valores entre 1 e 12")
+# 			i = value+20
+# 			while (i < 128):
+# 				todos.append(i)
+# 				i += 12
+# 		return todos
 
-pitch = Pitch.C4
-print(Pitch.todos([Pitch.C, Pitch.D]))
+
+# pitch = Pitch.C4
+# print(Pitch.todos([Pitch.C, Pitch.D]))
