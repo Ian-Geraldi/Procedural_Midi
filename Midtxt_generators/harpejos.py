@@ -1,14 +1,14 @@
-import pattern_generator as pg
+import Harmonia.pattern_generator as pg
 import numpy as np
 from Modelos.pitch import Pitch
 from Harmonia.RandomWalk import generate_progression
 
-tom = np.random.randint(Pitch.A0, Pitch.A1)
+tom = np.random.randint(Pitch.A, Pitch.Ab)
 pattern = pg.generate_pattern()
 chords = generate_progression(len(pattern))
 
 
-def chord_notes(tom, grau):
+def _chord_notes(tom, grau):
     if type(tom) is not Pitch:
         raise Exception("tom must be a Pitch object")
     if grau == 7:
@@ -21,5 +21,9 @@ def chord_notes(tom, grau):
         return [tom, Pitch(tom+3), Pitch(tom+7)]
 
 
+def generate():
+    pass
+
+
 print("Pattern: " + str(pattern) + "\n")
-print(chord_notes(tom, chords))
+print(_chord_notes(Pitch(tom), chords))

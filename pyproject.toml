@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "app"
+name = "procedural_midi"
 version = "0.1.0"
 description = ""
 authors = ["Ian-Geraldi <iangc49@gmail.com>"]
