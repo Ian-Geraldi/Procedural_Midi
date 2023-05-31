@@ -1,7 +1,7 @@
 from mido import Message, MidiFile, MidiTrack
-from ..Modelos.pitch import Pitch
-from ..Modelos.tempo import Tempo
-from ..Modelos.velocity import Velocity
+from app.Modelos.pitch import Pitch
+from app.Modelos.tempo import Tempo
+from app.Modelos.velocity import Velocity
 mid = MidiFile()
 track = MidiTrack()
 mid.tracks.append(track)
