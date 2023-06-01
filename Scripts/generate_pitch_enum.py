@@ -17,4 +17,4 @@ f.close()
 
 # open and read the file after the appending:
 f = open("pitch.py", "r")
-print(f.read())
+# print(f.read())

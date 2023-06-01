@@ -123,34 +123,100 @@ class Pitch(IntEnum):
     G9 = 127
     Ab9 = 128
 
-
     def __add__(self, value):
-	    members = list(self.__class__)
-	    index = members.index(self)
-		new_index = (index + value) % len(members)
-		return members[new_index]
+        members = list(self.__class__)
+        index = members.index(self)
+        new_index = (index + value) % len(members)
+        return members[new_index]
+
+    def __sub__(self, value):
+        members = list(self.__class__)
+        index = members.index(self)
+        new_index = (index - value) % len(members)
+        return members[new_index]
+
+    @classmethod
+    def get_all(cls, *args, octave_range=None):
+        notes_of_same_pitch = []
+        for arg in args:
+            if isinstance(arg, str):
+                pitch = getattr(cls, arg)
+            elif isinstance(arg, cls):
+                pitch = arg
+            else:
+                raise TypeError("Argument must be of type str or Pitch")
+            for note in cls:
+                if (note.name == pitch.name or (note.name.startswith(pitch.name) and note.name[len(pitch.name)].isdigit())) and len(note.name) > 1 and note.name[-1].isdigit():
+                    if octave_range is not None:
+                        octave = int(note.name[-1])
+                        if octave_range[0] <= octave <= octave_range[1]:
+                            notes_of_same_pitch.append(note)
+                    else:
+                        notes_of_same_pitch.append(note)
+        return sorted(notes_of_same_pitch, key=lambda note: note.value)
+
+    @classmethod
+    def get_notes(cls, *args, startNote=None, howManyNotes=None):
+        pitches = list(args)
+
+        # If startNote is not provided, select the first pitch as the startNote.
+        if startNote is None:
+            startNote = pitches[0]
+
+        # If howManyNotes is not provided, return all the notes.
+        if howManyNotes is None:
+            howManyNotes = len(pitches)
+
+        for i in range(len(pitches)):
+            pitches[i] = pitches[i]+12
+        for i, pitch in enumerate(pitches):
+            while pitch < startNote:
+                pitch = cls(pitch.value + 12)
+            pitches[i] = pitch
+
+        # Sort the pitches, select the first howManyNotes at or above startNote, and sort the selected pitches.
+        pitches = sorted(pitch for pitch in pitches if pitch >= startNote)[
+            :howManyNotes]
+
+        return pitches
+
+    # lembrar que o invert só aceita acordes dentro de um range de uma oitava. não pode ter duas oitavas da mesma nota.
+
+    @classmethod
+    def invert(cls, *args, bassCloseTo=None):
+        pitches = list(args)
+        distance = int(bassCloseTo) - int(pitches[0])
+        if bassCloseTo:
+            while (True):
+                newDistance = int(bassCloseTo) - int(pitches[0])
+                if newDistance >= distance:
+                    return pitches
+                if abs(distance) < 2:
+                    return pitches
+                if distance < 0:
+                    newBass = pitches[-1] - 12
+                    if newBass < 21:
+                        return pitches
+                    pitches.insert(0, newBass)
+                    pitches.pop()
+                else:
+                    newTopNote = pitches[0] + 12
+                    if newTopNote > 128:
+                        return pitches
+                    pitches.append(newTopNote)
+                    pitches.pop(0)
+            return pitches
+
+    @classmethod
+    def get_absolute(cls, pitch):
+        name = ''.join(c for c in pitch.name if not c.isdigit())
+        absolute_pitch = getattr(cls, name)
+        return absolute_pitch
 
 
-	def __sub__(self, value):
-		members = list(self.__class__)
-		index = members.index(self)
-		new_index = (index - value) % len(members)
-		return members[new_index]
-
-
-	@staticmethod
-	def todos(values):
-		members = list(self.__class__)
-		todos = []
-		for value in values:
-			if(value <1 or value> 12):
-				raise Exception("Por favor dê apenas valores entre 1 e 12")
-			i = value+20
-			while (i < 128):
-				todos.append(i)
-				i += 12
-		return todos
-
-
-pitch = Pitch.C4
-print(Pitch.todos([Pitch.C, Pitch.D]))
+# print(Pitch.invert(Pitch.C3, Pitch.E3, Pitch.G3, bassCloseTo=Pitch.F3))
+print(Pitch.get_notes(Pitch.C, Pitch.E, Pitch.G,
+      startNote=Pitch.Db1, howManyNotes=4))
+# print(Pitch.get_all('A', 'B', octave_range=[3, 5]))
+# print(Pitch.get_all(Pitch.C, Pitch.D, octave_range=[1, 3]))
+# print(Pitch.get_absolute(Pitch.C7))

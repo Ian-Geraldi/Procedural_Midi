@@ -25,5 +25,5 @@ def _exponential():
     return 1 + int(np.round(continuous_values).astype(int))
 
     # Print the first 10 integer values
-print(generate_pattern())
+# print(generate_pattern())
 # print(generate_pattern())

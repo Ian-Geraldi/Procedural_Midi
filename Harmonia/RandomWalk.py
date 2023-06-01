@@ -46,4 +46,4 @@ def generate_progression(size):
 #         if chordIndexes == value:
 #             chordNames.append(chordName)
 
-print(generate_progression(10))
+# print(generate_progression(10))

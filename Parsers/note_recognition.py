@@ -33,9 +33,9 @@ def fromFileToNote(fileString):
 
         i += 1
 
-        print(ptch)
-        print(velocity)
-        print(duration)
+        # print(ptch)
+        # print(velocity)
+        # print(duration)
 
         notes.append(Note(ptch, velocity, duration))
     return tempo, notes
