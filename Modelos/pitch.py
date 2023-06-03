@@ -186,26 +186,25 @@ class Pitch(IntEnum):
     def invert(cls, *args, bassCloseTo=None):
         pitches = list(args)
         distance = int(bassCloseTo) - int(pitches[0])
-        if bassCloseTo:
-            while (True):
-                newDistance = int(bassCloseTo) - int(pitches[0])
-                if newDistance >= distance:
+        while (True):
+            newDistance = int(bassCloseTo) - int(pitches[0])
+            if newDistance > distance:
+                return pitches
+            if abs(distance) < 2:
+                return pitches
+            if distance < 0:
+                newBass = pitches[-1] - 12
+                if newBass < 21:
                     return pitches
-                if abs(distance) < 2:
+                pitches.insert(0, newBass)
+                pitches.pop()
+            else:
+                newTopNote = pitches[0] + 12
+                if newTopNote > 128:
                     return pitches
-                if distance < 0:
-                    newBass = pitches[-1] - 12
-                    if newBass < 21:
-                        return pitches
-                    pitches.insert(0, newBass)
-                    pitches.pop()
-                else:
-                    newTopNote = pitches[0] + 12
-                    if newTopNote > 128:
-                        return pitches
-                    pitches.append(newTopNote)
-                    pitches.pop(0)
-            return pitches
+                pitches.append(newTopNote)
+                pitches.pop(0)
+        return pitches
 
     @classmethod
     def get_absolute(cls, pitch):
@@ -215,8 +214,8 @@ class Pitch(IntEnum):
 
 
 # print(Pitch.invert(Pitch.C3, Pitch.E3, Pitch.G3, bassCloseTo=Pitch.F3))
-print(Pitch.get_notes(Pitch.C, Pitch.E, Pitch.G,
-      startNote=Pitch.Db1, howManyNotes=4))
+# print(Pitch.get_notes(Pitch.C, Pitch.E, Pitch.G,
+#       startNote=Pitch.Db1, howManyNotes=4))
 # print(Pitch.get_all('A', 'B', octave_range=[3, 5]))
 # print(Pitch.get_all(Pitch.C, Pitch.D, octave_range=[1, 3]))
-# print(Pitch.get_absolute(Pitch.C7))
+# print(Pitch.get_absolute(Pitch.Bb7))
