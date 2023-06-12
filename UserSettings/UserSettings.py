@@ -12,5 +12,3 @@ transitionMatrix = np.array([
 ])
 
 changeKeyOdds = 0.05
-
-inBetweenChordOdds = 0.3

@@ -12,18 +12,17 @@ def generate_pattern():
         next_sign_odds = pattern[-1]/notes  # chance de ser sinal negativo
         next_sign = int(np.random.choice(
             [1, -1], size=1, p=[1-next_sign_odds, next_sign_odds]))
-        delta = _exponential() * next_sign
+        delta = _poisson() * next_sign
         next_note = np.clip(pattern[-1] + delta, 0, notes)
         pattern.append(next_note)
 
     return pattern
 
 
-def _exponential():
+def _poisson():
     lambda_param = 1
     continuous_values = np.random.exponential(scale=1/lambda_param, size=1)
     return 1 + int(np.round(continuous_values).astype(int))
 
-    # Print the first 10 integer values
 # print(generate_pattern())
 # print(generate_pattern())

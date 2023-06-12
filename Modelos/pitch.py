@@ -123,6 +123,9 @@ class Pitch(IntEnum):
     G9 = 127
     Ab9 = 128
 
+    def __str__(self):
+        return self.name
+
     def __add__(self, value):
         members = list(self.__class__)
         index = members.index(self)
@@ -207,7 +210,10 @@ class Pitch(IntEnum):
         return pitches
 
     @classmethod
-    def get_absolute(cls, pitch):
+    def getAbsolute(cls, pitch):
+        if pitch == 13:
+            pitch = Pitch.A
+        pitch = Pitch(pitch)
         name = ''.join(c for c in pitch.name if not c.isdigit())
         absolute_pitch = getattr(cls, name)
         return absolute_pitch
