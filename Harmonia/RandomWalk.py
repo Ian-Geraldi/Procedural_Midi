@@ -4,9 +4,6 @@ from Modelos.chord import Chord, ChordType
 from UserSettings import UserSettings
 
 
-graph = UserSettings.transitionMatrix
-
-
 def getDegree(chord: Chord, key: Pitch):
     if chord.pitch == key:
         return 1
@@ -40,9 +37,11 @@ def degreeToChord(grau, key):
         return Chord(Pitch(key+9), ChordType.Minor)
     elif grau == 7:
         return Chord(Pitch(key+11), ChordType.Diminished)
+    raise Exception("Invalid chord degree")
 
 
 def generateProgression(size, key: Pitch = Pitch.C):
+    graph = UserSettings.transitionMatrix
     chords = []
     chords.append(degreeToChord(1, key))
     lastDegree = 1
