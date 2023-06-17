@@ -1,8 +1,8 @@
 from mido import Message, MidiFile, MidiTrack
-from Modelos.pitch import Pitch
-from Modelos.tempo import Tempo
-from Modelos.velocity import Velocity
-from Parsers.note_recognition import fromFileToNote
+from models.pitch import Pitch
+from models.tempo import Tempo
+from models.velocity import Velocity
+from parsers.note_recognition import fromFileToNote
 import os
 
 

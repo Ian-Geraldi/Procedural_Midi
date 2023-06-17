@@ -1,4 +1,4 @@
-from Modelos.pitch import Pitch
+from models.pitch import Pitch
 import os
 
 

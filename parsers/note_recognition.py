@@ -1,5 +1,5 @@
-from Modelos.pitch import Pitch
-from Modelos.note import Note
+from models.pitch import Pitch
+from models.note import Note
 
 
 def fromFileToNote(fileString):

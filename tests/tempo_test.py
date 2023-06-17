@@ -1,6 +1,6 @@
 from mido import Message, MidiFile, MidiTrack
-from Modelos.pitch import Pitch
-from Modelos.tempo import Tempo
+from models.pitch import Pitch
+from models.tempo import Tempo
 mid = MidiFile()
 track = MidiTrack()
 mid.tracks.append(track)

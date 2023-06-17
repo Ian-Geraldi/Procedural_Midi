@@ -1,9 +1,9 @@
-import Harmonia.pattern_generator as pg
+import harmony.pattern_generator as pg
 import numpy as np
-from Modelos.pitch import Pitch
-from Modelos.chord import chordNotes
-from Harmonia.RandomWalk import generateProgression
-from Parsers.pitches_to_midtxt import pitches_to_midtxt
+from models.pitch import Pitch
+from models.chord import chordNotes
+from harmony.random_walk import generateProgression
+from parsers.pitches_to_midtxt import pitches_to_midtxt
 
 tom = np.random.randint(Pitch.A, Pitch.Ab)
 pattern = pg.generate_pattern()

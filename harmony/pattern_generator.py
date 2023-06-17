@@ -1,4 +1,4 @@
-from Modelos import pitch
+from models import pitch
 import numpy as np
 
 tempos = [3, 4, 6, 8]

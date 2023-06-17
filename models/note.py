@@ -1,5 +1,5 @@
-from Modelos.pitch import Pitch
-from Modelos.velocity import Velocity
+from models.pitch import Pitch
+from models.velocity import Velocity
 from fractions import Fraction
 
 

@@ -1,7 +1,7 @@
 import numpy as np
-from Modelos.pitch import Pitch
-from Modelos.chord import Chord, ChordType
-from UserSettings import UserSettings
+from models.pitch import Pitch
+from models.chord import Chord, ChordType
+from userSettings import user_settings
 
 
 def getDegree(chord: Chord, key: Pitch):
@@ -41,13 +41,13 @@ def degreeToChord(grau, key):
 
 
 def generateProgression(size, key: Pitch = Pitch.C):
-    graph = UserSettings.transitionMatrix
+    graph = user_settings.transitionMatrix
     chords = []
     chords.append(degreeToChord(1, key))
     lastDegree = 1
     for i in range(size):
         print(chords[-1])
-        if UserSettings.changeKeyOdds > np.random.rand():
+        if user_settings.changeKeyOdds > np.random.rand():
             availableKeys = chords[-1].isDiatonicTo()
             availableKeys.remove(key)
             targetKey = Pitch.getAbsolute(

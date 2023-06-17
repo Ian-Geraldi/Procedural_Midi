@@ -1,10 +1,10 @@
 import numpy as np
 from scipy.linalg import eig
-from UserSettings import UserSettings
+from userSettings import user_settings
 
-p = UserSettings.transitionMatrix
+p = user_settings.transitionMatrix
 
-values, vectors = eig(P.T)
+values, vectors = eig(p.T)
 
 idx = np.where(np.abs(values - 1) < 1e-8)[0][0]
 
