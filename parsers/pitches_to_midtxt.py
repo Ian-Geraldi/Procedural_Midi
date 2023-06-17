@@ -3,7 +3,7 @@ import os
 
 
 def pitches_to_midtxt(pitches: list(Pitch), bpm: int = 80, file: str = "mao_esquerda.midtxt", howManyPerBar: int = 4):
-    output_dir = "Output"
+    output_dir = "input"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     file_path = os.path.join(output_dir, file)
@@ -12,7 +12,7 @@ def pitches_to_midtxt(pitches: list(Pitch), bpm: int = 80, file: str = "mao_esqu
     file.write(str(bpm))
     file.write("\n")
     for pitch in pitches:
-        file.write(str(pitch)[6:])
+        file.write(str(pitch))
         file.write("f")
         file.write("1/" + str(howManyPerBar))
         file.write("\n")

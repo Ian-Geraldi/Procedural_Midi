@@ -210,7 +210,7 @@ class Pitch(IntEnum):
         return pitches
 
     @classmethod
-    def getAbsolute(cls, pitch):
+    def get_absolute(cls, pitch):
         if pitch == 13:
             pitch = Pitch.A
         pitch = Pitch(pitch)

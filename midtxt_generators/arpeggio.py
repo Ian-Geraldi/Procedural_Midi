@@ -1,21 +1,17 @@
 import harmony.pattern_generator as pg
 import numpy as np
+from typing import List
 from models.pitch import Pitch
-from models.chord import chordNotes
-from harmony.random_walk import generateProgression
+from models.chord import Chord, chordNotes
+from harmony.random_walk import generate_progression
 from parsers.pitches_to_midtxt import pitches_to_midtxt
 
-tom = np.random.randint(Pitch.A, Pitch.Ab)
-pattern = pg.generate_pattern()
-graus = generateProgression(len(pattern))
-bpm = 80
 
-
-def generate(graus, bpm, pattern, tom):
+def generate(chords: List[Chord], pattern, tom):
     notes = []
     lastBass = tom+44
-    for grau in graus:
-        chord_notes = chordNotes(Pitch(tom), grau=grau)
+    for chord in chords:
+        chord_notes = chordNotes(chord.pitch, type=chord.type)
         possibilities = Pitch.get_all(*chord_notes, octave_range=[2, 4])
         inverted = Pitch.invert(*possibilities, bassCloseTo=lastBass)
         lastBass = inverted[0]
@@ -24,5 +20,5 @@ def generate(graus, bpm, pattern, tom):
     return notes
 
 
-pitches_to_midtxt(generate(graus, bpm, pattern, tom),
-                  howManyPerBar=len(pattern))
+# pitches_to_midtxt(generate(graus, bpm, pattern, tom),
+#                   howManyPerBar=len(pattern))

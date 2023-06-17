@@ -1,28 +1,29 @@
 import numpy as np
 from models.pitch import Pitch
 from models.chord import Chord, ChordType
-from userSettings import user_settings
+import user_settings
 
 
 def getDegree(chord: Chord, key: Pitch):
     if chord.pitch == key:
         return 1
-    elif chord.pitch == Pitch.getAbsolute(key+2):
+    elif chord.pitch == Pitch.get_absolute(key+2):
         return 2
-    elif chord.pitch == Pitch.getAbsolute(key+4):
+    elif chord.pitch == Pitch.get_absolute(key+4):
         return 3
-    elif chord.pitch == Pitch.getAbsolute(key+5):
+    elif chord.pitch == Pitch.get_absolute(key+5):
         return 4
-    elif chord.pitch == Pitch.getAbsolute(key+7):
+    elif chord.pitch == Pitch.get_absolute(key+7):
         return 5
-    elif chord.pitch == Pitch.getAbsolute(key+9):
+    elif chord.pitch == Pitch.get_absolute(key+9):
         return 6
-    elif chord.pitch == Pitch.getAbsolute(key+11):
+    elif chord.pitch == Pitch.get_absolute(key+11):
         return 7
     raise Exception("Chord not diatonic to key")
 
 
 def degreeToChord(grau, key):
+    key = Pitch(key)
     if grau == 1:
         return Chord(Pitch(key), ChordType.Major)
     elif grau == 2:
@@ -32,7 +33,7 @@ def degreeToChord(grau, key):
     elif grau == 4:
         return Chord(Pitch(key+5), ChordType.Major)
     elif grau == 5:
-        return Chord(Pitch(key+7), ChordType.Dominant7)
+        return Chord(Pitch(key+7), ChordType.Major)
     elif grau == 6:
         return Chord(Pitch(key+9), ChordType.Minor)
     elif grau == 7:
@@ -40,7 +41,7 @@ def degreeToChord(grau, key):
     raise Exception("Invalid chord degree")
 
 
-def generateProgression(size, key: Pitch = Pitch.C):
+def generate_progression(size, key: Pitch = Pitch.C):
     graph = user_settings.transitionMatrix
     chords = []
     chords.append(degreeToChord(1, key))
@@ -48,9 +49,9 @@ def generateProgression(size, key: Pitch = Pitch.C):
     for i in range(size):
         print(chords[-1])
         if user_settings.changeKeyOdds > np.random.rand():
-            availableKeys = chords[-1].isDiatonicTo()
+            availableKeys = chords[-1].is_diatonic_to()
             availableKeys.remove(key)
-            targetKey = Pitch.getAbsolute(
+            targetKey = Pitch.get_absolute(
                 Pitch(np.random.choice(availableKeys)))
             key = targetKey
             lastDegree = getDegree(chords[-1], key)
@@ -64,4 +65,4 @@ def generateProgression(size, key: Pitch = Pitch.C):
     return chords
 
 
-print(generateProgression(30))
+# print(generate_progression(30))
