@@ -11,9 +11,14 @@ def pitches_to_midtxt(pitches: list(Pitch), bpm: int = 80, file: str = "mao_esqu
     file = open(file_path, "w")
     file.write(str(bpm))
     file.write("\n")
-    for pitch in pitches:
-        file.write(str(pitch))
-        file.write("f")
+
+    for i in range(len(pitches)):
+        file.write(str(pitches[i]))
+        bar_percentage = (i % howManyPerBar)/howManyPerBar
+        if (bar_percentage < 1e-8 or abs(bar_percentage - 0.5) < 1e-8):
+            file.write("f")
+        else:
+            file.write("p")
         file.write("1/" + str(howManyPerBar))
         file.write("\n")
     file.close()

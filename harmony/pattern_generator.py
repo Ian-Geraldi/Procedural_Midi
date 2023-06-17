@@ -1,11 +1,8 @@
 from models import pitch
 import numpy as np
 
-tempos = [3, 4, 6, 8]
 
-
-def generate_pattern():
-    tempo = np.random.choice(tempos)
+def generate_pattern(tempo=4):
     notes = 7
     pattern = [0]
     for i in range(tempo-1):

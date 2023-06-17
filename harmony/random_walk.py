@@ -41,7 +41,7 @@ def degreeToChord(grau, key):
     raise Exception("Invalid chord degree")
 
 
-def generate_progression(size, key: Pitch = Pitch.C):
+def generate_progression(size=32, key: Pitch = Pitch.C):
     graph = user_settings.transitionMatrix
     chords = []
     chords.append(degreeToChord(1, key))
