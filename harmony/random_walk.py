@@ -19,6 +19,8 @@ def getDegree(chord: Chord, key: Pitch):
         return 6
     elif chord.pitch == Pitch.get_absolute(key+11):
         return 7
+
+    return 1
     raise Exception("Chord not diatonic to key")
 
 
