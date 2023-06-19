@@ -31,7 +31,8 @@ arp2 = arpeggio.generate(acordes, pattern2, tom)
 arp = arp1 + arp2
 print("Gerando o arpejo a partir da progressão de acordes")
 
-pitches_to_midtxt(arp, bpm=bpm, howManyPerBar=tempo_arpeggio)
+pitches_to_midtxt(arp1, bpm=bpm, howManyPerBar=tempo_arpeggio)
+pitches_to_midtxt(arp2, bpm=bpm, howManyPerBar=tempo_arpeggio)
 print("Gerando o arquivo miditxt a partir dos arpejos gerados. Colocando ele na pasta \"input\"")
 
 print("Gerando o midi a partir dos miditxts gerados. Ele se chama \"midiOutput.mid\" e está no diretório raiz do projeto")
